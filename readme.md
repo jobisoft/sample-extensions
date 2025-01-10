@@ -17,6 +17,8 @@ Manifest V3 is officially supported since Thunderbird 128. Running Manifest V3 a
 | experiment.prefMigration           | Experiment to migrate preferences from a `nsIPrefBranch` to the WebExtension local storage. |
 | experiment.removeAttachmentsIfJunk | Experiment to remove attachments from the message display area, if the message is classified as junk. The `tabs` and `messageDisplay` APIs are used to detect and manipulate message tabs. |
 | experiment.restart                 | Experiment to add a *Restart* entry to Thunderbird's *file menu* to perform a restart. The `windows` API is used to detect and manipulate the main window. The Experiment defines a `Restart.onCommand` event, which is fired when the custom *Restart* menu item clicked. The background script registers a listener for this event and calls `Restart.execute()`. |
+| indexdb.dexie                      | A simple example how to work with an IndexDB using the the [Dexie library](https://dexie.org/).|
+| indexdb.plain                      | A simple example how to work with an IndexDB directly.|
 | mailTabs                           | Uses the `mailTabs` APIs to manipulate the appearance of the main Thunderbird window.|
 | managedStorage                     | Uses `storage.managed` to access data defined by enterprise policies.|
 | menu                               | Uses the menus API to add entries to different menus and shows how to override the context menu of content pages (in popups or tabs).|
