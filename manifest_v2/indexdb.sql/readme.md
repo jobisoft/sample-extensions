@@ -1,7 +1,6 @@
 ## Working with an IndexDB using the SQLiteWorker library
 
-A simple example to show how to use the [SQLiteWorker library](https://github.com/WebReflection/sqlite-worker)
-to access an IndexDB.
+A simple example to show how to use the [SQLiteWorker library](https://github.com/WebReflection/sqlite-worker).
 
 The database will be created on add-on installation and can be inspected through
 the "storage" tab of the add-on inspector. It will remain empty until the "Access DB!"
