@@ -27,37 +27,40 @@ const defaultCustomerData = [
 ];
 
 const db = await init({ name: 'MySQLDatabase' })
-const table = db.raw`customers`;
 
-await db.query`CREATE TABLE IF NOT EXISTS ${table} (ssn TEXT PRIMARY KEY, name TEXT, age INTEGER, email TEXT)`;
-const { total } = await db.get`SELECT COUNT(ssn) as total FROM ${table}`;
-if (total < 1) {
-    console.log('Inserting some value');
-    for (let { ssn, name, age, email } of defaultCustomerData) {
-        await db.query`INSERT INTO ${table} (ssn,name,age,email) VALUES (${ssn},${name},${age},${email})`;
+browser.browserAction.onClicked.addListener(async () => {
+    const table = db.raw`customers`;
+    await db.query`CREATE TABLE IF NOT EXISTS ${table} (ssn TEXT PRIMARY KEY, name TEXT, age INTEGER, email TEXT)`;
+    const { total } = await db.get`SELECT COUNT(ssn) as total FROM ${table}`;
+    if (total < 1) {
+        console.log('Inserting some value');
+        for (let { ssn, name, age, email } of defaultCustomerData) {
+            await db.query`INSERT INTO ${table} (ssn,name,age,email) VALUES (${ssn},${name},${age},${email})`;
+        }
     }
-}
 
-console.log(await db.all`SELECT * FROM ${table}`);
+    console.log(await db.all`SELECT * FROM ${table}`);
 
-// Dump the raw SQLite database buffer.
-const requestDB = window.indexedDB.open("MySQLDatabase", "1");
-requestDB.onsuccess = (event) => {
-    const rawDB = event.target.result;
-    rawDB.onerror = (event) => {
-        // Generic error handler for all errors targeted at this database's
-        // requests!
-        console.error(`Database error: ${event.target.error?.message}`);
-    };
-    const objectStore = rawDB
-        .transaction("sqlite")
-        .objectStore("sqlite");
-    const requestBuffer = objectStore.get("buffer");
-    requestBuffer.onsuccess = (event) => {
-        const buffer = requestBuffer.result;
-        // buffer is a Uint8Array of a binary string.
-        const decoder = new TextDecoder();
-        const str = decoder.decode(buffer);
-        console.log(str);
-    };
-}
+    // Dump the raw SQLite database buffer.
+    const requestDB = window.indexedDB.open("MySQLDatabase", "1");
+    requestDB.onsuccess = (event) => {
+        const rawDB = event.target.result;
+        rawDB.onerror = (event) => {
+            // Generic error handler for all errors targeted at this database's
+            // requests!
+            console.error(`Database error: ${event.target.error?.message}`);
+        };
+        const objectStore = rawDB
+            .transaction("sqlite")
+            .objectStore("sqlite");
+        const requestBuffer = objectStore.get("buffer");
+        requestBuffer.onsuccess = (event) => {
+            const buffer = requestBuffer.result;
+            // buffer is a Uint8Array of a binary string.
+            const decoder = new TextDecoder();
+            const str = decoder.decode(buffer);
+            console.log(str);
+        };
+    }
+})
+
