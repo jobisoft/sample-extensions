@@ -39,3 +39,25 @@ if (total < 1) {
 }
 
 console.log(await db.all`SELECT * FROM ${table}`);
+
+// Dump the raw SQLite database buffer.
+const requestDB = window.indexedDB.open("MySQLDatabase", "1");
+requestDB.onsuccess = (event) => {
+    const rawDB = event.target.result;
+    rawDB.onerror = (event) => {
+        // Generic error handler for all errors targeted at this database's
+        // requests!
+        console.error(`Database error: ${event.target.error?.message}`);
+    };
+    const objectStore = rawDB
+        .transaction("sqlite")
+        .objectStore("sqlite");
+    const requestBuffer = objectStore.get("buffer");
+    requestBuffer.onsuccess = (event) => {
+        const buffer = requestBuffer.result;
+        // buffer is a Uint8Array of a binary string.
+        const decoder = new TextDecoder();
+        const str = decoder.decode(buffer);
+        console.log(str);
+    };
+}

@@ -7,8 +7,7 @@ The database will be created on add-on installation and can be inspected through
 the "storage" tab of the add-on inspector. It will remain empty until the "Access DB!"
 action button is clicked. Later clicks will only read the DB.
 
-**Note:** The data is not stored in an actual SQLite database. The library allows
-to interact with an IndexDB through SQL syntax:
+The library allows to interact with the database through SQL syntax:
 
 ```javascript
 const db = await init({ name: 'MySQLDatabase' })
@@ -26,6 +25,12 @@ if (total < 1) {
 console.log(await db.all`SELECT * FROM ${table}`);
 ```
 
-**Note:** The database is not stored in a human readable format and even though
-the example stores the same date as the other two IndexDB examples, the actual
-IndexDB is not compatible.
+**Note:** The actual used database *is* an SQLite database stored as a raw SQLite
+database file buffer in an `sqlite` objectStore of an IndexDB. All DB operations
+are handled in memory and the entire SQLite database file buffer is committed into
+the IndexDB.
+
+This example dumps the buffer after each interaction to the console. Technically
+it is possible to import an existing SQLite database file.
+
+This approach might cause out-of-memory errors for large databases.
