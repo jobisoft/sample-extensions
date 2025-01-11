@@ -1,14 +1,14 @@
-// This is a simple example how to use the SQLiteWorker library to access an IndexDB.
-// The data stored is the same as in the example presented on MDN (see link below),
-// but the resulting format of the actual IndexDB is not compatible, the content is
-// not human-readable in the storage tab of the add-on inspector.
+// This is a simple example how to use the SQLiteWorker library. The data stored
+// is the same as in the example presented on MDN (see link below), but the resulting
+// format of the actual IndexDB is not compatible: The IndexDB will contain the
+// buffer of an actual SQLite database.
 // https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB#structuring_the_database
 
 // The SQLiteWorker library makes heavy use of tagged template function parameters,
 // more information can be found here:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
 
-// It is not possible to actually use the SQLiteWorker library as a Worker in a
+// It is not possible to actually use the SQLiteWorker library as a worker in a
 // WebExtension, because the worker script is loaded as a dynamic JavaScript blob
 // via createObjectURL(), and the blob worker tries to load the actual scripts via
 // the global importScripts() function. However, that blob worker is not within
