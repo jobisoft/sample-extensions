@@ -1,4 +1,4 @@
-## IndexDB
+## Working with an IndexDB
 
 A simple example to show how to work with an IndexDB. For larger projects it might
 be better to use established libraries instead:
