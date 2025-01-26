@@ -30,7 +30,10 @@
         "messagesModify"
     ],
     "background": {
-        "page": "background.html"
+        "scripts": [
+            "background.js"
+        ],
+        "type": "module"
     },
     "icons": {
         "64": "images/internet.png",
