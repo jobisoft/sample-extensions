@@ -60,7 +60,9 @@ for (let messageTab of messageTabs) {
     // Make sure the tab is displaying a single message. The mail tab could also
     // display a content page or multiple messages, which will cause an error.
     if (messageTab.type == "mail") {
-        let messages = await browser.messageDisplay.getDisplayedMessages(messageTab.id);
+        let messages = await browser.messageDisplay.getDisplayedMessages(
+            messageTab.id
+        );
         if (messages.length != 1) {
             continue;
         }
