@@ -57,12 +57,22 @@ let messageTabs = openTabs.filter(
     tab => ["mail", "messageDisplay"].includes(tab.type)
 );
 for (let messageTab of messageTabs) {
+    // Make sure the tab is displaying a message. The mail tab could also display
+    // a content page, which will cause an error.
+    if (messageTab.type == "mail") {
+        let messages = await browser.messageDisplay.getDisplayedMessages(messageTab.id);
+        // Note: In Manifest v3, getDisplayedMessages() returns a MessageList,
+        // and not an array.
+        if (messages.length == 0) {
+            continue;
+        }
+    }
     browser.tabs.executeScript(messageTab.id, {
         file: "messageDisplay/message-content-script.js"
-    })
+    });
     browser.tabs.insertCSS(messageTab.id, {
         file: "messageDisplay/message-content-styles.css"
-    })
+    });
 }
 
 /**
