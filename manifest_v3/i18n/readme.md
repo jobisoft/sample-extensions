@@ -1,7 +1,7 @@
 ## i18n
 
-This extension uses the `i18n` API to localize an extension. It allows to include multiple translations
-of extension strings:
+This extension uses the `i18n` API to localize an extension. It allows to include multiple `messages.json`
+files with translations of extension strings in the `_locales` folder:
 
 ```
 extension-root/
@@ -15,7 +15,7 @@ extension-root/
         └── messages.json
 ```
 
-The English version could look as follows:
+The English version of the `messages.json` file could look as follows:
 
 ```JSON
 {
