@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title data-i18n-content="title"></title>
+  <script type="module" src="popup.js" type="application/javascript"></script>
+</head>
+
+<body>
+
+  <!-- using unescaped keys -->
+  <div data-i18n-content="goodDay"></div>
+  <input type="text" data-i18n-placeholder="textPrompt" />
+
+  <!-- using escaped keys -->
+  <div data-i18n-content="__MSG_goodDay__"></div>
+  <input type="text" data-i18n-placeholder="__MSG_textPrompt__" />
+  
+  <!-- not using data-i18n-* attributes -->
+  <div>__MSG_goodDay__</div>
+  <input placeholder="__MSG_textPrompt__" />
+
+</body>
+
+</html>

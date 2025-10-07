@@ -1,0 +1,14 @@
+{
+  "extensionName": {
+    "message": "Meine Erweiterung"
+  },
+  "title": {
+    "message": "Das ist ein Titel"
+  },
+  "goodDay": {
+    "message": "Einen schönen Tag noch!"
+  },
+  "textPrompt": {
+    "message": "Hier muss Text hin"
+  }
+}

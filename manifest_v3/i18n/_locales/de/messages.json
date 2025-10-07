@@ -1,0 +1,14 @@
+{
+  "extensionName": {
+    "message": "My Extension"
+  },
+  "title": {
+    "message": "This is a title"
+  },
+  "goodDay": {
+    "message": "Have a good day!"
+  },
+  "textPrompt": {
+    "message": "Enter some text"
+  }
+}
